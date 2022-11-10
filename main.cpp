@@ -1,61 +1,67 @@
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "filesys.h"
+#include "sdisk.h"
+
 using namespace std;
 
 
-Class Sdisk{
-public :
-Sdisk(string diskname, int numbblocks, int blocksize)
+class Sdisk
 {
-diskname=block; numbblocks=4;
-blocksize=4;
-}
-
+public :
+Sdisk(string diskname);
+Sdisk(string diskname, int numberofblocks, int blocksize);
 int getblock(int blocknumber, string& buffer);
 int putblock(int blocknumber, string buffer);
-int getnumbblocks(); // accessor function
-int getblocksize(); // accessor function
-void stubs();
 private :
 string diskname;        // file name of software-disk
-int numbblocks;     // number of blocks on disk
+int numberofblocks;     // number of blocks on disk
 int blocksize;          // block size in bytes
 };
 
-int Sdisk::putblock(int blocknumber,string& buffer)
-
-{ 
-ifstream f1;
-f1.open("file.DAT");
-if(!f1)
-
+Sdisk::Sdisk(string diskname)
 {
-cout << "ERROR file.DAT|n";
-exit(102);
 }
 
-f1.get(buffer);
-
-f1.close();
-
-}
-int Sdisk::getblock(int blocknumber, string buffer)
+//Sdisk
+Sdisk::Sdisk(string diskname, int numberofblocks, int blocksize)
 {
-ofstream f2;
-f2.open("file2.DAT);
-cout << "DATA IN FILE";
-while(!f2.eof())
+	
+}
+
+//getblock
+int Sdisk::getblock(int blocknumber, string& buffer)
 {
-f2.get(buffer);
-cout<<buffer;
+
 }
-f2.close();
+
+//putblock
+int Sdisk::putblock(int blocknumber, string buffer)
+{
+    iofile.open(diskname.c.str(), ios::in|io::out);
+    iofile.seekp(blocksize + blocknumber);
+        buffersize()
+    for (i=0; i<blocksize; i++)
+        iofile.put(buffer[i]);
+    if (blocknumber < 0 or blocknumber >= numberofblocks)
+        {
+            cout << "Block doesn't exist";
+            return 0;
+        }
+    iofile.seeks(blocknumber + blocksize);
+    buffer.clear();
+    char c;
+
+    for (i=0; i<blocksize; i++)
+        iofile.get(c);
+        buffer.push_back(c);
+
 }
-void Sdisk::stubs()
-{}
+
+
 
 int main()
-
 {
   Sdisk disk1("test1",16,32);
   string block1, block2, block3, block4;
@@ -69,9 +75,4 @@ int main()
   disk1.getblock(8,block4);
   cout << "Should be 32 2s : ";
   cout << block4 << endl;;
-}
-
-
-Class putblock{
-
 }
