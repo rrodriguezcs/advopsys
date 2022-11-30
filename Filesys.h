@@ -2,7 +2,7 @@
 #define
 #include "sdisk.h"
 
-Class Filesys: public Sdisk
+class Filesys: public Sdisk
 {
 Public :
 Filesys(string diskname, int numberofblocks, int blocksize);
