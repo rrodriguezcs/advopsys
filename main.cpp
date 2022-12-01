@@ -69,7 +69,7 @@ public:
 class Table:public Filesys{
 public:
 	Table(string filename,int numberofblocks,int blocksize,string flatfile,string indexfile);
-	int Build_Table(string input_file);
+	int BuildTable(string input_file);
 	int Search(string value);
 
 private:
@@ -93,7 +93,7 @@ Sdisk::Sdisk(string diskname, int numberofblocks, int blocksize)
     } 
 	else
     {
-        cout << "File does not exist. Creating file " << diskname << " " << endl;
+        cout << "File does not exist. Creating file" << diskname << " " << endl;
         iofile.open(diskname.c_str(), ios::out);
         for(int i=0; i<(blocksize*numberofblocks); i++)
         {
@@ -155,7 +155,7 @@ int Sdisk::getblocksize(){
 
 string Sdisk::getdiskname()
 {
-     return diskname;
+    return diskname;
 }
 
 Filesys::Filesys(string file, int numberofblocks, int blocksize):Sdisk(file,numberofblocks,blocksize){
@@ -469,14 +469,14 @@ int Shell::add(string file){
 	}
 }
 
-Table::Table(string filename,int numberofblocks,int blocksize,string flatfile,string indexfile):Filesys(filename,numberofblocks,blocksize){
+Table::Table(string diskname,int numberofblocks,int blocksize,string flatfile,string indexfile):Filesys(diskname,numberofblocks,blocksize){
 	this->indexfile = indexfile;
 	this->flatfile = flatfile;
 	newfile(flatfile);
 	newfile(indexfile);
 }
 
-int Table::Build_Table(string input_file){
+int Table::BuildTable(string input_file){
 	ifstream infile;
 	infile.open(input_file.c_str());
 	vector<string> tKey;
@@ -491,7 +491,7 @@ int Table::Build_Table(string input_file){
 		tKey.push_back(primeKey);
 		tBlock.push_back(blockid);
 		getline(infile,record);
-		if(infile.bad() and tKey.size()>0){
+		if(infile.bad() && tKey.size()>0){
 			ostringstream tBuffer;
 			tBuffer<<tKey.size()<<" ";
 			for(int i=0;i<tKey.size();i++){
